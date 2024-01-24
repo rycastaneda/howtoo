@@ -12,7 +12,7 @@ function dummy () {
  * @returns {array}
  */
 function reverse (array) {
-  return [];
+  return array.reverse();
 }
 
 /**
@@ -27,7 +27,7 @@ function reverse (array) {
  * 
  */
 function stringReverse (text) {
-  return '';
+  return text.split('').reverse().join('');
 }
 
 
@@ -42,7 +42,13 @@ function stringReverse (text) {
  * @returns {array}
  */
 function fibonacci (length) {
-  return [];
+  const result = [1, 1];
+
+  for (let i = 2; i < length; i++) {
+    result[i] = result[i - 1] + result[i - 2];
+  }
+
+  return result;
 }
 
 /**
@@ -58,7 +64,20 @@ function fibonacci (length) {
  * @returns {number[]}
  */
 function twoSum (testArray, target) {
-  return [];
+  const result = [];
+  const numIndexMap = {};
+
+  for (let i = 0; i < testArray.length; i++) {
+    const complement = target - testArray[i];
+
+    if (numIndexMap.hasOwnProperty(complement)) {
+      result.push([testArray[numIndexMap[complement]], testArray[i]]);
+    }
+
+    numIndexMap[testArray[i]] = i;
+  }
+
+  return result;
 }
 
 /**
@@ -77,7 +96,12 @@ function twoSum (testArray, target) {
  * @returns {array}
  */
 function range (start, end) {
-  return [];
+  var a = [], b = start;
+  while (b < end) {
+    a.push(b);
+    b++;
+  }
+  return a;
 }
 
 /**
@@ -94,7 +118,9 @@ function range (start, end) {
  * @returns {array}
  */
 function flatten (array) {
-  return [];
+  return array.reduce(function (flat, toFlatten) {
+    return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+  }, []);
 }
 
 module.exports = {
